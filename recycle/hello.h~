@@ -1,0 +1,5 @@
+class Hi {
+ public:
+  int x;
+  Hi();
+};

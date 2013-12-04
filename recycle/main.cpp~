@@ -1,0 +1,10 @@
+#include <iostream>
+#include "hello.h"
+using namespace std;
+
+int main(int argc, char *argv[]){
+  Hi *hi = new Hi();
+  hi->x = 2;
+  delete Hi;
+  return 0;
+}

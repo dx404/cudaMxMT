@@ -2,7 +2,6 @@
 #include <iomanip>
 #include <cstdlib>
 #include <ctime>
-
 #include "seqMatrix.h"
 using namespace std;
 
