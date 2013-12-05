@@ -8,6 +8,7 @@
 #include <cublas_v2.h>
 #include "seqMatrix.h"
 #include "cuBLAS_MxMT.cuh"
+#include "cudaGFlopTimer.cuh"
 
 void cuBLAS_MxMT_device(float *d_r, float *d_m, int d){
 	cublasHandle_t handle;

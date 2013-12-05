@@ -1,3 +1,5 @@
+#ifndef CUDAGFLOPTIMER_CUH
+#define CUDAGFLOPTIMER_CUH
 
 class cudaGFlopTimer {
 private:
@@ -11,3 +13,4 @@ public:
 	float getGFlops(float d);
 };
 
+#endif

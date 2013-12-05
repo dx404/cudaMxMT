@@ -6,16 +6,23 @@ cudaVersion=-arch=compute_30 -code=sm_30
 
 all: MxMT.out
 	
-MxMT.out: main.o seqMatrix.o cudaMxMT.o cuBLAS_MxMT.o cudaGFlopTimer.o ompMxMT.o
+MxMT.out: MxMTagent.o main.o seqMatrix.o cudaMxMT.o cuBLAS_MxMT.o cudaGFlopTimer.o ompMxMT.o
 	nvcc $(cudaVersion) $(OPTIMIZATION) $(oFLAG) \
 	-lcublas -Xcompiler -fopenmp \
 	$(PROJECT_DIR)/Debug/main.o \
+	$(PROJECT_DIR)/Debug/MxMTagent.o \
 	$(PROJECT_DIR)/Debug/seqMatrix.o \
 	$(PROJECT_DIR)/Debug/cudaMxMT.o \
 	$(PROJECT_DIR)/Debug/cuBLAS_MxMT.o \
 	$(PROJECT_DIR)/Debug/cudaGFlopTimer.o \
 	$(PROJECT_DIR)/Debug/ompMxMT.o \
 	-o $(PROJECT_DIR)/Debug/MxMT.out
+
+MxMTagent.o:
+	nvcc -c $(cudaVersion) $(OPTIMIZATION) $(oFLAG) \
+	-lcublas \
+	$(PROJECT_DIR)/src/MxMTagent.cu \
+	-o $(PROJECT_DIR)/Debug/MxMTagent.o
 
 main.o: $(PROJECT_DIR)/src/main.cu
 	nvcc -c $(cudaVersion) $(OPTIMIZATION) $(oFLAG) \
