@@ -1,10 +1,10 @@
 CUDA Matrix Multiplication for M·Mᵀ
-https://github.com/wisdompilot/cudaMxMT
 --------------------------------------------------------------------------------------------------
 	-- A programming assignment for Parallel Computing (COMP 633 Fall 2013, UNC Chapel Hill)
 	-- Author: Duo Zhao
 	-- The code is hosted at 
-	
+
+https://github.com/wisdompilot/cudaMxMT	
 
 Project Description: 
 --------------------------------------------------------------------------------------------------
