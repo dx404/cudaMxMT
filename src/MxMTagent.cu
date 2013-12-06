@@ -22,9 +22,8 @@ cudaMxMT_agent::cudaMxMT_agent(int dim) : BW(BLOCK_WIDTH) {
 	cudaMalloc((void **) &deviceSrcMatrix, byteSize);
 	cudaMalloc((void **) &deviceTargetMatrix, byteSize);
 
-
-	gDim.x = ceil((float) dim / BLOCK_WIDTH);
-	gDim.y = ceil((float) dim / BLOCK_WIDTH);
+	gDim.x = dim / BLOCK_WIDTH + 1;
+	gDim.y = dim / BLOCK_WIDTH + 1;
 	gDim.z = 1;
 
 	bDim.x = BLOCK_WIDTH;
@@ -46,12 +45,14 @@ cudaMxMT_agent::~cudaMxMT_agent(){
 void cudaMxMT_agent::cudaMxMT_init_rand(int init_method){
 	this->init_method = init_method;
 	matrixPopulate(hostSrcMatrix, dim, init_method);
+	matrixPopulate(hostTargetMatrix, dim, 2);
 }
 
 void cudaMxMT_agent::cudaMxMT_calculate(int impl_version){
 	this->impl_version = impl_version;
 	cgTimerCopy->start();
 	cudaMemcpy(deviceSrcMatrix, hostSrcMatrix, byteSize, cudaMemcpyHostToDevice);
+	cudaMemcpy(deviceTargetMatrix, hostTargetMatrix, byteSize, cudaMemcpyHostToDevice);
 	cgTimer->start();
 	switch((int)impl_version){
 	case 0:
@@ -71,6 +72,18 @@ void cudaMxMT_agent::cudaMxMT_calculate(int impl_version){
 		break;
 	case 5:
 		cuda_MxMT_v005<<< gDim, bDim >>>(deviceTargetMatrix, deviceSrcMatrix, dim);
+		break;
+	case 6:
+		cuda_MxMT_v006<<< gDim, bDim >>>(deviceTargetMatrix, deviceSrcMatrix, dim);
+		break;
+	case 7:
+		cuda_MxMT_v007<<< gDim, bDim >>>(deviceTargetMatrix, deviceSrcMatrix, dim);
+		break;
+	case 8:
+		cuda_MxMT_v008<<< dim3(1, dim/BLOCK_WIDTH+1, 1), dim3(1024/BLOCK_WIDTH, BLOCK_WIDTH, 1) >>>(deviceTargetMatrix, deviceSrcMatrix, dim);
+		break;
+	case 9:
+		cuda_MxMT_v009<<< dim3(1, dim/BLOCK_WIDTH+1, 1), dim3(1024/BLOCK_WIDTH, BLOCK_WIDTH, 1) >>>(deviceTargetMatrix, deviceSrcMatrix, dim);
 		break;
 	default:
 		cuBLAS_MxMT_device(deviceTargetMatrix, deviceSrcMatrix, dim);

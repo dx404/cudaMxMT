@@ -1,6 +1,7 @@
 /**
  * Author: Duo Zhao
- * This part is the
+ * A customized wrapper interface to access cuBLAS_v2 library
+ * for the computation of M * transpose(M)
  */
 
 #include <cuda.h>
@@ -10,11 +11,11 @@
 #include "cuBLAS_MxMT.cuh"
 #include "cudaGFlopTimer.cuh"
 
+// The interface for the data has been copied into the GPU
 void cuBLAS_MxMT_device(float *d_r, float *d_m, int d){
 	cublasHandle_t handle;
 	cublasCreate(&handle);
 	float alpha = 1.0f, beta = 1.0f;
-	// calling cuda buid-in library to executing computation
 	cublasSgemm_v2(handle,
 			CUBLAS_OP_T, CUBLAS_OP_N,
 			d, d ,d,
@@ -25,6 +26,9 @@ void cuBLAS_MxMT_device(float *d_r, float *d_m, int d){
 			d_r, d);
 }
 
+// The interface includes the copy-in and copy-out part from CPU
+// as well as the GPU computation
+// gFlops is returned for performance monitor
 float cuBLAS_MxMT_host(float *h_r, float *h_m, int d){
 	cudaGFlopTimer *tr = new cudaGFlopTimer();
 
@@ -37,7 +41,6 @@ float cuBLAS_MxMT_host(float *h_r, float *h_m, int d){
 	cublasCreate(&handle);
 	float alpha = 1.0f, beta = 1.0f;
 
-	// calling cuda buid-in library to executing computation
 	tr->start();
 	cublasSgemm_v2(handle,
 			CUBLAS_OP_T, CUBLAS_OP_N,

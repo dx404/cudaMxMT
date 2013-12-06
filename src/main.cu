@@ -4,19 +4,19 @@ using namespace std;
 /**
  * Author: Duo Donald Zhao
  */
-
 int main(int argc, char *argv[]){
-	cout << "Hello, Welcome to the world of CUDA Matrix Multiplication!" << endl;
-	if (argc < 0){
-		cerr << "usage: " << "<program> <version> <matrix dimension> <check> <display>" << endl;
-		return -1;
-	}
+	cout << "Hello, Welcome to the world of CUDA Matrix Multiplication for M x MT!" << endl;
+	cout << "usage: stdin::<impl_version> <dim> <init_method> <san_check> <disp_matrix> <csv_format>" << endl;
 
 	float impl_version;
 	int dim;
+	int init_mtd;
 	bool san_check;
 	bool disp_result;
-	while (cin >> impl_version >> dim >> san_check >> disp_result){
+	bool csv_format;
+
+	// Six parameters to fill from the standard input
+	while (cin >> impl_version >> dim >> init_mtd >> san_check >> disp_result >> csv_format){
 		cudaMxMT_agent *cal = new cudaMxMT_agent(dim);
 		cal->cudaMxMT_init_rand(false);
 		cal->cudaMxMT_calculate(impl_version);
@@ -24,7 +24,7 @@ int main(int argc, char *argv[]){
 			cal->check();
 		if (disp_result)
 			cal->display_Matrix();
-		cal->printPofile(true);
+		cal->printPofile(csv_format);
 		delete cal;
 	}
 	return 0;

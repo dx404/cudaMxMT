@@ -41,16 +41,22 @@ float MatrixL2Diff(float *mt, float *ms, int d){
 	return sum;
 }
 
-void matrixPopulate(float *m, int d, bool fromRand){
-	if (fromRand){
+//Matrix Initialization
+void matrixPopulate(float *m, int d, int method){
+	if (method == 0){
+		for (int i = 0; i < d*d; i++){
+			m[i] = i % 1000;
+		}
+	}
+	else if (method == 1){
 		srand(time(0));
 		for (int i = 0; i < d*d; i++){
 			m[i] = rand()/(float) RAND_MAX;
 		}
 	}
-	else{
+	else {
 		for (int i = 0; i < d*d; i++){
-			m[i] = i % 1000;
+			m[i] = 0;
 		}
 	}
 }

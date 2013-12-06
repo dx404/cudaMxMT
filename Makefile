@@ -1,8 +1,7 @@
 PROJECT_DIR=$(HOME)/MxMT/MxMT
-CC=nvcc
-OPTIMIZATION=-O1
+OPTIMIZATION=-O3
 cudaVersion=-arch=compute_30 -code=sm_30
-#oFLAG=-ptxas-options=-v -maxrregcount 60
+oFLAG=-D BW8 --ptxas-options=-v -maxrregcount 60
 
 all: MxMT.out
 	

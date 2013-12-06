@@ -1,3 +1,7 @@
+/**
+ * An interface to facilitate invoking
+ * various implementations of kernel functions
+ */
 #include "cudaGFlopTimer.cuh"
 
 class cudaMxMT_agent{
