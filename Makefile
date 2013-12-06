@@ -1,7 +1,8 @@
-PROJECT_DIR=$(HOME)/MxMT/MxMT
+PROJECT_DIR=.
+BLOCK_DIM=8
 OPTIMIZATION=-O3
 cudaVersion=-arch=compute_30 -code=sm_30
-oFLAG=-D BW8 --ptxas-options=-v -maxrregcount 60
+oFLAG=-D BW$(BLOCK_DIM) --ptxas-options=-v -maxrregcount 60
 
 all: MxMT.out
 	
@@ -59,6 +60,6 @@ clean:
 	rm -fr *.o *.out
 	
 run:
-	srun -p gpudev -n 1 -t 00:10:00 ./Debug/outMxMT.out 2222
+	srun -p gpudev -n 1 -t 00:10:00 ./Debug/outMxMT.out
 	
 	
