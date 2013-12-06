@@ -15,6 +15,7 @@ Project Description:
 	implementation and the performance obtained as a function of n. Investigate the behavior as you 
 	vary Cuda block and thread parameters. Compare your performance with the Cuda BLAS implementation. 
 	
+<<<<<<< HEAD
 Building and Testing Environment 
 -------------------------------------------------------------------------------
 	The project is mostly written in CUDA C++ and build in NVCC compiler. The CUDA Tookit version is 5.5.
@@ -90,3 +91,5 @@ Project File Structures and Functionalities
 	src/MxMTconst.h:
 		The preprocessor for conditional building the project with different block sizes. 
 		
+=======
+>>>>>>> 1ffb80e44bdddac2c100446d71ea531d20204cd5
