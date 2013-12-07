@@ -1,0 +1,72 @@
+.
+├── Debug
+│   ├── inputData1.csv
+│   ├── MxMT.out16
+│   ├── MxMT.out24
+│   ├── MxMT.out32
+│   ├── MxMT.out4
+│   └── MxMT.out8
+├── log
+│   ├── inputData0.prn
+│   ├── inputData1.prn
+│   ├── inputData4.prn
+│   ├── inputData5.prn
+│   ├── inputData6.prn
+│   ├── inputData7.prn
+│   ├── inputData8.prn
+│   ├── inputData9.prn
+│   ├── inputDataSan.prn
+│   ├── r0.csv
+│   ├── r1.csv
+│   ├── r1_up.csv
+│   ├── r4_9.csv
+│   ├── result.txt
+│   └── rSan.csv
+├── Makefile
+├── README.md
+├── recycle
+│   ├── Copy_of_main.cu
+│   ├── cuBLAS_MxMT.cu
+│   ├── cuBLAS_MxMT.cuh
+│   ├── cudaGFlopTimer.cu
+│   ├── cudaGFlopTimer.cuh
+│   ├── cudaMatrixTest.cu
+│   ├── hello.cpp~
+│   ├── hello.h~
+│   ├── ma.cu
+│   ├── main.cpp~
+│   ├── main.cu
+│   ├── main.cu~
+│   ├── matrixMP.cpp
+│   ├── sample.cu
+│   └── singleBlock.cu
+├── report
+│   ├── comp633pa2report.pdf
+│   ├── dataAggregation.xlsx
+│   └── deviceQueryResult.txt
+├── run.sh
+├── script
+│   ├── runBulk0.sh
+│   ├── runBulk1.sh
+│   ├── runBulk456789.sh
+│   ├── runBulk89.sh
+│   ├── runBulkSan.sh
+│   ├── runBulk.sh
+│   └── run.sh
+├── src
+│   ├── cuBLAS_MxMT.cu
+│   ├── cuBLAS_MxMT.cuh
+│   ├── cudaGFlopTimer.cu
+│   ├── cudaGFlopTimer.cuh
+│   ├── cudaMxMT.cu
+│   ├── cudaMxMT.cuh
+│   ├── main.cu
+│   ├── MxMTagent.cu
+│   ├── MxMTagent.cuh
+│   ├── MxMTconst.h
+│   ├── ompMxMT.cpp
+│   ├── seqMatrix.cpp
+│   └── seqMatrix.h
+└── structure.txt
+
+6 directories, 63 files
