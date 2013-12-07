@@ -2,6 +2,7 @@ CUDA Matrix Multiplication for M·Mᵀ
 --------------------------------------------------------------------------------------------------
 	-- A programming assignment for Parallel Computing (COMP 633 Fall 2013, UNC Chapel Hill)
 	-- Author: Duo Zhao
+	-- The report is under report/ directory
 
 https://github.com/wisdompilot/cudaMxMT	
 
@@ -68,9 +69,10 @@ Project File Structures and Functionalities
 			
 	src/cudaMxMT.cu:
 		The major component of the project, which includes all the implementations of the matrix multiplication.
-		The implementation detail can be found in the report/finalReport.pdf. Note for the 2nd version, 
+		The implementation detail can be found in the report/comp633pa2report.pdf. Note for the 2nd version, 
 		cuda_MxMT_v002, only a matrix with multiples of block width is supported for computation. The 8th and 9th 
-		version, cuda_MxMT_v008 and cuda_MxMT_v009, only up to 1024 dimension is supported. 
+		version, cuda_MxMT_v008 and cuda_MxMT_v009, only up to 1024 dimension is supported. The raw data is stored
+		at report/Aggregation.xlsx
 		
 	src/MxMTagent.cu:
 		A object-oriented connector to invoke the the kernels in src/cudaMxMT.cu. It allocates the appropriate

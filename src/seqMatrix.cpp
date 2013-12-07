@@ -38,7 +38,7 @@ float MatrixL2Diff(float *mt, float *ms, int d){
 		float diff = mt[i] - ms[i];
 		sum += diff * diff;
 	}
-	return sum;
+	return sum / (d*d*d);
 }
 
 //Matrix Initialization

@@ -16,7 +16,7 @@ MxMT.out: MxMTagent.o main.o seqMatrix.o cudaMxMT.o cuBLAS_MxMT.o cudaGFlopTimer
 	$(PROJECT_DIR)/Debug/cuBLAS_MxMT.o \
 	$(PROJECT_DIR)/Debug/cudaGFlopTimer.o \
 	$(PROJECT_DIR)/Debug/ompMxMT.o \
-	-o $(PROJECT_DIR)/Debug/MxMT.out
+	-o $(PROJECT_DIR)/Debug/MxMT.out$(BLOCK_DIM)
 
 MxMTagent.o:
 	nvcc -c $(cudaVersion) $(OPTIMIZATION) $(oFLAG) \

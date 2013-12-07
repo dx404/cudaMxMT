@@ -266,7 +266,6 @@ __global__ void cuda_MxMT_v007 (float *d_mr, float *d_m, int d){
 	}
 }
 
-// A single thread block
 __global__ void cuda_MxMT_v008(float *d_mr, float *d_m, int d){
 	__shared__ float bm[1024][BLOCK_WIDTH];
 	int bdx = blockIdx.x, bdy = blockIdx.y;
@@ -278,7 +277,6 @@ __global__ void cuda_MxMT_v008(float *d_mr, float *d_m, int d){
 		int rowRead = rowStart + tdx;
 		if (rowRead < d && gtdy < d){
 			bm[rowRead][tdy] = d_m[rowRead * d + gtdy];
-//			printf("\t rowRead, gtdy %d, %d, %f \n",  rowRead, gtdy, bm[rowRead][tdy]);
 		}
 	}
 	if (tdx == 0 && tdy == 0){
@@ -298,13 +296,10 @@ __global__ void cuda_MxMT_v008(float *d_mr, float *d_m, int d){
 			if (bdy == gridDim.y - 1){
 				for (int k = 0; k < widthEnd; k++){
 					sum += bm[i][k] * bm[j][k];
-//					printf("\t oo sum = ooo gtdy?? -> (%d, %d, %d), (%f, %f)\n",  i, j, k, bm[i][k], bm[j][k]);
 				}
-//				printf("\t oo sum = %f <- (%d, %d)\n", sum, i, j);
 			}
 			else{
 				for (int k = 0; k < BLOCK_WIDTH; k++){
-//					printf("\t oopp sum = ooo gtdy?? -> (%d, %d, %d), (%f, %f)\n",  i, j, k, bm[i][k], bm[j][k]);
 					sum += bm[i][k] * bm[j][k];
 				}
 			}
@@ -323,7 +318,6 @@ __global__ void cuda_MxMT_v009(float *d_mr, float *d_m, int d){
 		int rowRead = rowStart + tdx;
 		if (rowRead < d && gtdy < d){
 			bm[tdy][rowRead] = d_m[rowRead * d + gtdy];
-//			printf("\t rowRead, gtdy %d, %d, %f \n",  rowRead, gtdy, bm[rowRead][tdy]);
 		}
 	}
 	if (tdx == 0 && tdy == 0){
@@ -343,13 +337,10 @@ __global__ void cuda_MxMT_v009(float *d_mr, float *d_m, int d){
 			if (bdy == gridDim.y - 1){
 				for (int k = 0; k < widthEnd; k++){
 					sum += bm[k][i] * bm[k][j];
-//					printf("\t oo sum = ooo gtdy?? -> (%d, %d, %d), (%f, %f)\n",  i, j, k, bm[i][k], bm[j][k]);
 				}
-//				printf("\t oo sum = %f <- (%d, %d)\n", sum, i, j);
 			}
 			else{
 				for (int k = 0; k < BLOCK_WIDTH; k++){
-//					printf("\t oopp sum = ooo gtdy?? -> (%d, %d, %d), (%f, %f)\n",  i, j, k, bm[i][k], bm[j][k]);
 					sum += bm[k][i] * bm[k][j];
 				}
 			}
